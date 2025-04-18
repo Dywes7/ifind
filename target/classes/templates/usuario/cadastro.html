@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head th:fragment="page_head">
+		<title>iFind</title>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+		<meta name="description" content="" />
+		<meta name="author" content="" />
+		<link rel="icon" href="/image/favicon.png" />
+
+		<!-- Bootstrap core CSS -->
+		<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+		<link href="/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css" rel="stylesheet" />
+
+		<!-- Custom styles for this template -->
+		<link href="/css/style.css" rel="stylesheet" />
+		<style>
+			/* Estilos modernos */
+			body {
+				background-color: #f8f9fa;
+				font-family: 'Segoe UI', sans-serif;
+			}
+			.navbar {
+				background: linear-gradient(135deg, #1e3c72, #2a5298);
+				box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+			}
+			.navbar-brand {
+				font-weight: bold;
+				font-size: 1.5rem;
+				color: white !important;
+			}
+			.navbar-nav .nav-link {
+				color: rgba(255, 255, 255, 0.8) !important;
+				font-weight: 500;
+				transition: color 0.3s ease;
+			}
+			.navbar-nav .nav-link:hover {
+				color: white !important;
+			}
+			.sidebar {
+				background-color: #ffffff;
+				box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+			}
+			.card {
+				border: none;
+				border-radius: 10px;
+				box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+				transition: transform 0.3s ease, box-shadow 0.3s ease;
+			}
+			.card:hover {
+				transform: translateY(-5px);
+				box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+			}
+			.card-header {
+				background: linear-gradient(135deg, #1e3c72, #2a5298);
+				color: white;
+				border-radius: 10px 10px 0 0;
+				font-weight: bold;
+			}
+			.dropdown-item {
+				color: #333;
+				transition: background-color 0.3s ease, color 0.3s ease;
+			}
+			.dropdown-item:hover {
+				background-color: #1e3c72;
+				color: white;
+			}
+			.layout-content {
+				padding: 20px;
+				background-color: white;
+				border-radius: 10px;
+				box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+				margin: 20px;
+			}
+			
+			#form-cadastro {
+			    max-width: 600px;
+			    margin: 100px auto 40px auto;
+			    padding: 30px;
+			    background-color: #ffffff;
+			    border-radius: 10px;
+			    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+			}
+
+			#form-cadastro h2 {
+			    text-align: center;
+			    margin-bottom: 30px;
+			    font-weight: 600;
+			    color: #1e3c72;
+			}
+			
+			#form-cadastro .form-group {
+			    margin-bottom: 20px;
+			}
+		</style>
+	</head>
+<body>
+	<header th:fragment="page_header">
+			<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+				<div class="container-fluid">
+					<a class="navbar-brand" href="#">iFind</a>
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarNav">
+						<ul class="navbar-nav ms-auto">
+							<li class="nav-item">
+								<a class="nav-link" href="/login">Fazer Login</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</header>
+
+    <div class="layout-main">
+       <!-- <aside th:replace="~{home :: page_anside}"></aside> -->
+
+        <section class="layout-content">
+
+			<div class="container" id="form-cadastro">
+			    <h2>Cadastro de Usuário</h2>
+
+			    <div th:if="${erro}" class="alert alert-danger">
+			        <span th:text="${erro}"></span>
+			    </div>
+
+			    <div th:if="${sucesso}" class="alert alert-success">
+			        <span th:text="${sucesso}"></span>
+			    </div>
+
+			    <form th:action="@{/usuarios/salvar}" method="POST" th:object="${usuario}">
+			        <div class="row">	       
+						<div class="form-group col-md-12">
+							<label for="nome">Nome de Usuário</label>
+							<input type="text" class="form-control" id="username" placeholder="Nome de usuário" th:field="*{username}" required/>
+						</div>
+						<div class="form-group col-md-12">
+							<label for="nome">Senha</label>
+							<input type="password" class="form-control" id="password" placeholder="Senha" th:field="*{password}" required/>
+						</div>
+						<div class="form-group col-md-12">
+						    <label for="confirmarSenha">Confirmar Senha</label>
+						    <input type="password" class="form-control" id="confirmarSenha" placeholder="Confirme a senha" required/>
+						</div>
+						<div class="form-group col-md-12">
+							<label for="nome">Nome Completo</label>
+							<input type="text" class="form-control" id="nome" placeholder="Nome Completo" th:field="*{nome}" required/>
+						</div>
+			            <div class="form-group col-md-12">
+			                <label for="email">E-mail</label>
+			                <input type="email" class="form-control" id="email" placeholder="E-mail" th:field="*{email}" required/>
+			            </div>
+			            <div class="form-group col-md-6">
+			                <label for="cpf">CPF</label>
+			                <input type="text" class="form-control" id="cpf" placeholder="CPF" th:field="*{cpf}" required />
+			            </div>
+			            <div class="form-group col-md-6">
+			                <label for="dtNascimento">Data de Nascimento</label>
+			                <input type="date" class="form-control" id="dtNascimento" placeholder="Data de Nascimento" th:field="*{dtNascimento}" required />
+			            </div>
+			        </div>
+			        <input type="hidden" th:field="*{id}" />
+			        <div class="text-end mt-3">
+			            <button type="submit" class="btn btn-primary">Salvar</button>
+			        </div>
+			    </form>
+			</div>
+
+        </section>
+    </div>
+
+    <footer class="layout-footer">
+        <div class="container"></div>
+    </footer>
+	
+	
+
+    <!-- Scripts -->
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
+    <script>
+        $(function () {
+            $('[data-toggle="popover"]').popover();
+        });
+        $(".navbar-toggler").click(function () {
+            $(".sidebar").toggleClass("sidebar-open");
+        });
+		
+		$(document).ready(function() {
+				      $('#cpf').mask('000.000.000-00', {reverse: true});
+		});
+		
+    </script>
+	
+	<script>
+	    document.querySelector("form").addEventListener("submit", function(event) {
+	        const senha = document.getElementById("password").value;
+	        const confirmar = document.getElementById("confirmarSenha").value;
+
+	        if (senha !== confirmar) {
+	            event.preventDefault(); // impede envio
+	            alert("As senhas não coincidem!");
+	        }
+	    });
+	</script>
+</body>
+</html>

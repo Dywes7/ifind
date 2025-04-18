@@ -1,8 +1,10 @@
 package br.edu.br.meuprimeirospringboot.entity;
 
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -25,6 +27,14 @@ public class Usuario implements UserDetails {
 	private String username;
 	@Column(nullable = false)
 	private String password;
+	private String nome;
+	private String email;
+	
+	@Column(name = "cpf", unique = true, nullable = false)
+	private String cpf;
+	
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+    private LocalDate dtNascimento;
 	
 	@Enumerated(EnumType.STRING)
 	private Role role;
@@ -79,6 +89,38 @@ public class Usuario implements UserDetails {
 
 	public void setRole(Role role) {
 		this.role = role;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public LocalDate getDtNascimento() {
+		return dtNascimento;
+	}
+
+	public void setDtNascimento(LocalDate dtNascimento) {
+		this.dtNascimento = dtNascimento;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 

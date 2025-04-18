@@ -17,7 +17,7 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/", "/css/**", "/js/**", "/image/**", "/webjars/**").permitAll()
+                .requestMatchers("/usuarios/**" , "/css/**", "/js/**", "/image/**", "/webjars/**").permitAll()
                 .requestMatchers("/alunos/cadastrar").hasRole("ADMIN")
                 .requestMatchers("/disciplinas/cadastrar").hasRole("ADMIN")
                 .requestMatchers("/turmas/cadastrar").hasRole("ADMIN")
@@ -33,7 +33,8 @@ public class SecurityConfig {
                 .clearAuthentication(true)
             )
             .formLogin(form -> form          
-                .loginPage("/login")         
+                .loginPage("/login")
+                .failureUrl("/login?error=true")
                 .permitAll()
                 .defaultSuccessUrl("/", true)
             )
