@@ -3,9 +3,9 @@ services:
     image: 'mysql:latest'
     container_name: mysql_container
     environment:
-      - 'MYSQL_DATABASE=tjw'
-      - 'MYSQL_PASSWORD=@abcd1234'
-      - 'MYSQL_ROOT_PASSWORD=@abcd1234'
+      - 'MYSQL_DATABASE=ifind'
+      - 'MYSQL_PASSWORD=ifind123'
+      - 'MYSQL_ROOT_PASSWORD=ifind123'
       - 'MYSQL_USER=user'
     ports:
       - '3306:3306'
