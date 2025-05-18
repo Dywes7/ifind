@@ -1,0 +1,73 @@
+package br.edu.br.meuprimeirospringboot.controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import br.edu.br.meuprimeirospringboot.entity.Anuncio;
+import br.edu.br.meuprimeirospringboot.serviceImpl.AnuncioServiceImpl;
+
+
+@Controller
+@RequestMapping("/anuncios")
+public class AnuncioController {
+	
+	@Autowired
+	private AnuncioServiceImpl anuncio;
+	
+	@GetMapping("/listar")
+	String ListarAnuncios(ModelMap model){
+		model.addAttribute("anuncios", anuncio.buscarTodos());
+		return "/anuncio/lista";
+	}	
+	
+	@GetMapping("/cadastrar")
+	String CadastrarAnuncios(ModelMap model){
+		model.addAttribute("anuncio", new Anuncio());
+		return "/anuncio/cadastro";
+	}
+	
+	@PostMapping("/salvar")
+	String Salvar(Anuncio a, RedirectAttributes redirectAttributes) {
+		try {
+	        anuncio.cadastrar(a);
+	        redirectAttributes.addFlashAttribute("sucesso", "Anuncio cadastrado com sucesso!");
+	        return "redirect:/anuncios/listar";
+	    } catch (RuntimeException e) {
+	        redirectAttributes.addFlashAttribute("erro", e.getMessage());
+	        return "redirect:/anuncios/cadastrar";
+	    }
+	}
+	
+	@GetMapping("/excluir/{id}")
+	String excluir(@PathVariable("id") Long id) {
+		anuncio.excluirPorId(id);
+		return "redirect:/anuncios/listar";	
+	}
+	
+	@GetMapping("/editar/{id}")
+	String preEditar(@PathVariable("id") Long id, ModelMap model) {
+		model.addAttribute("anuncio", anuncio.buscarPorId(id));
+		return "/anuncio/cadastro";
+	}
+	
+	@PostMapping("/editar")
+	String editar(Anuncio a, RedirectAttributes redirectAttributes) {
+		try {
+			anuncio.editar(a);
+			redirectAttributes.addFlashAttribute("sucesso", "Anuncio cadastrado com sucesso!");
+			return "redirect:/anuncios/listar";
+		} catch (RuntimeException e) {
+			redirectAttributes.addFlashAttribute("erro", e.getMessage());
+			return "redirect:/anuncios/editar/" + a.getId();
+		}
+		
+			
+	}
+
+}

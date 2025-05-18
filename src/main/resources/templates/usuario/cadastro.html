@@ -22,7 +22,7 @@
 				font-family: 'Segoe UI', sans-serif;
 			}
 			.navbar {
-				background: linear-gradient(135deg, #1e3c72, #2a5298);
+				background: linear-gradient(135deg, #2ECC71, #2ECC71);
 				box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 			}
 			.navbar-brand {
@@ -53,7 +53,7 @@
 				box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 			}
 			.card-header {
-				background: linear-gradient(135deg, #1e3c72, #2a5298);
+				background: linear-gradient(135deg, #2ECC71, #2ECC71);
 				color: white;
 				border-radius: 10px 10px 0 0;
 				font-weight: bold;
@@ -63,7 +63,7 @@
 				transition: background-color 0.3s ease, color 0.3s ease;
 			}
 			.dropdown-item:hover {
-				background-color: #1e3c72;
+				background-color: #2ECC71;
 				color: white;
 			}
 			.layout-content {
@@ -87,7 +87,7 @@
 			    text-align: center;
 			    margin-bottom: 30px;
 			    font-weight: 600;
-			    color: #1e3c72;
+			    color: #2ECC71;
 			}
 			
 			#form-cadastro .form-group {
@@ -96,23 +96,8 @@
 		</style>
 	</head>
 <body>
-	<header th:fragment="page_header">
-			<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-				<div class="container-fluid">
-					<a class="navbar-brand" href="#">iFind</a>
-					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-					<div class="collapse navbar-collapse" id="navbarNav">
-						<ul class="navbar-nav ms-auto">
-							<li class="nav-item">
-								<a class="nav-link" href="/login">Fazer Login</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</nav>
-		</header>
+	<header th:replace="~{home :: page_header}"></header>
+
 
     <div class="layout-main">
        <!-- <aside th:replace="~{home :: page_anside}"></aside> -->
@@ -182,6 +167,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+	<script src="/webjars/jquery/jquery.min.js"></script>
+	<script src="/webjars/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <script>
         $(function () {

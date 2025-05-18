@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{home :: page_head}"></head>
+<body>
+    <header th:replace="~{home :: page_header}"></header>
+
+    <div class="layout-main">
+        <aside th:replace="~{home :: page_anside}"></aside>
+
+        <section class="layout-content">
+            <div class="page-header">
+                <nav class="navbar navbar-expand-md navbar-light bg-light">
+                    <a class="btn btn-primary btn-md" href="/servicos/listar" role="button">
+                        <span class="oi oi-spreadsheet" title="Cadastro" aria-hidden="true"></span>
+                        <span>Listar Serviços</span>
+                    </a>
+                </nav>
+            </div>
+
+            <div class="container" id="form-cadastro">
+				<div th:if="${erro}" class="alert alert-danger">
+				     <span th:text="${erro}"></span>
+				 </div>
+
+				 <div th:if="${sucesso}" class="alert alert-success">
+				     <span th:text="${sucesso}"></span>
+				 </div>
+                <form th:action=" ${servico.id == null} ? @{/servicos/salvar} : @{/servicos/editar}" method="POST" th:object="${servico}">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="titulo">Título</label>
+                            <input type="text" class="form-control" id="nome" placeholder="Título do serviço" th:field="*{titulo}" required/>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="descricao">Descrição</label>
+                            <textarea class="form-control" id="descricao" placeholder="Descrição do serviço" th:field="*{descricao}" required></textarea>      
+                        </div>
+						
+						<div class="form-group col-md-6">
+                            <label for="precomin">Preço mínimo</label>
+                            <input type="number" class="form-control" id="precomin" placeholder="Preço mínimo do serviço" th:field="*{precoMinimo}" required step="0.01" min="0" />
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="precomax">Preço máximo</label>
+                            <input type="number" class="form-control" id="precomax" placeholder="Preço máximo do serviço" th:field="*{precoMaximo}" required step="0.01" min="0" />
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="atuacao">Atuação do serviço</label>
+							<select class="form-control" id="cargaHorariaHoras" th:field="*{atuacao}">
+								<option value="Presencial">Presencial</option>
+								<option value="Remoto">Remoto</option>
+								<option value="Híbrido">Híbrido</option>
+							</select>
+                        </div>
+
+                    </div>
+					<input type="hidden" th:field="*{id}" />
+                    <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <footer class="layout-footer">
+        <div class="container"></div>
+    </footer>
+	
+	
+
+    <!-- Scripts -->
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+	<script src="/webjars/jquery/jquery.min.js"></script>
+	<script src="/webjars/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        $(function () {
+            $('[data-toggle="popover"]').popover();
+        });
+        $(".navbar-toggler").click(function () {
+            $(".sidebar").toggleClass("sidebar-open");
+        });
+		
+		$(document).ready(function() {
+				      $('#cpf').mask('000.000.000-00', {reverse: true});
+		});
+		
+    </script>
+</body>
+</html>

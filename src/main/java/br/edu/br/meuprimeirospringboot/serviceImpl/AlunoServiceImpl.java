@@ -53,22 +53,22 @@ public class AlunoServiceImpl  implements AlunoService{
 
 	@Override
 	public Aluno editar(Aluno a) {
-		Aluno al = this.buscarPorId(a.getId());
+		Aluno a1 = this.buscarPorId(a.getId());
 		
 		if (!isCpfValido(a.getCpf())) {
 			throw new RuntimeException("CPF deve conter 11 caracteres.");
 		}
 		
-		if (!a.getCpf().equals(al.getCpf()) && aluno.existsByCpf(a.getCpf())) {
+		if (!a.getCpf().equals(a1.getCpf()) && aluno.existsByCpf(a.getCpf())) {
 			throw new RuntimeException("CPF já cadastrado!");
 		}
 		
-		al.setNome(a.getNome());
-		al.setEmail(a.getEmail());
-		al.setMatricula(a.getMatricula());
-		al.setCpf(a.getCpf());
-		al.setDtNascimento(a.getDtNascimento());
-		return aluno.save(al);
+		a1.setNome(a.getNome());
+		a1.setEmail(a.getEmail());
+		a1.setMatricula(a.getMatricula());
+		a1.setCpf(a.getCpf());
+		a1.setDtNascimento(a.getDtNascimento());
+		return aluno.save(a1);
 	}
 
 }

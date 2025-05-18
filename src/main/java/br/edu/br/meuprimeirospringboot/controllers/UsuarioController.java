@@ -35,7 +35,7 @@ public class UsuarioController {
 		try {
 			usuario.cadastrar(u);
 			redirectAttributes.addFlashAttribute("sucesso", "Usuário cadastrado com sucesso!");
-	        return "redirect:/login";
+	        return "redirect:/";
 		} catch (RuntimeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 	        return "redirect:/usuarios/cadastrar";

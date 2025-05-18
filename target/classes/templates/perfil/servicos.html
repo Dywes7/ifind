@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{home :: page_head}"></head>
+
+<body>
+	<header th:replace="~{home :: page_header}"></header>
+
+	<div class="layout-main">
+
+		<aside th:replace="~{home :: page_anside}"></aside>
+
+		<section class="layout-content">
+			<nav class="navbar navbar-expand-md bg-light">
+				<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+
+					<a class="btn btn-primary btn-md" href="/servicos/cadastrar" role="button">
+						<span class="oi oi-plus" title="Cadastro" aria-hidden="true"></span>
+						<span>Cadastrar Serviço</span>
+					</a>
+				</div>
+			</nav>
+
+			<div class="container">
+				<div class="table-responsive">
+					<table class="table table-striped table-hover table-sm">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Usuário</th>
+								<th>Título</th>
+								<th>Descrição</th>
+								<th>Preço mínimo</th>
+								<th>Preço Máximo</th>
+								<th>Atuação</th>
+								<th>Ação</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="servico : ${servicos}">
+								<td th:text="${servico.id}">1</td>
+								<td th:text="${servico.usuario.username}">Usuário</td>
+								<td th:text="${servico.titulo}">Título</td>
+								<td th:text="${servico.descricao}">Descrição</td>
+								<td th:text="${servico.precoMinimo}">50</td>
+								<td th:text="${servico.precoMaximo}">100</td>
+								<td th:text="${servico.atuacao}">Presencial</td>
+								<td colspan="2">
+									<a class="btn btn-info btn-sm" th:href="@{/servicos/editar/{id} (id=${servico.id})}" role="button">
+										<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
+									</a>
+
+									<a class="btn btn-danger btn-sm" th:href="@{/servicos/excluir/{id} (id=${servico.id})} " role="button">
+										<span class="oi oi-brush" title="Excluir" aria-hidden="true"></span>
+									</a>
+
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</section>
+
+	</div>
+
+	<footer class="layout-footer">
+		<div class="container">
+
+		</div>
+	</footer>
+
+	<!-- Bootstrap core JavaScript
+================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="/webjars/jquery/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/webjars/jquery/jquery.min.js"></script>
+	<script src="/webjars/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript">
+
+		$(function () {
+			$('[data-toggle="popover"]').popover();
+		});
+
+		$(document).ready(function () {
+			$(".navbar-toggle").click(function () {
+				$(".sidebar").toggleClass("sidebar-open");
+			})
+		});
+
+	</script>
+</body>
+
+</html>

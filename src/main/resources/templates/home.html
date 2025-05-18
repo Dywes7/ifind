@@ -17,96 +17,153 @@
 	<!-- Custom styles for this template -->
 	<link href="/css/style.css" rel="stylesheet" />
 	<style>
-		/* Estilos modernos */
-		body {
-			background-color: #f8f9fa;
-			font-family: 'Segoe UI', sans-serif;
-		}
-		.navbar {
-			background: linear-gradient(135deg, #1e3c72, #2a5298);
-			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-		}
-		.navbar-brand {
-			font-weight: bold;
-			font-size: 1.5rem;
-			color: white !important;
-		}
-		.navbar-nav .nav-link {
-			color: rgba(255, 255, 255, 0.8) !important;
-			font-weight: 500;
-			transition: color 0.3s ease;
-		}
-		.navbar-nav .nav-link:hover {
-			color: white !important;
-		}
-		.sidebar {
-			background-color: #ffffff;
-			box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-		}
-		.card {
-			border: none;
-			border-radius: 10px;
-			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-			transition: transform 0.3s ease, box-shadow 0.3s ease;
-		}
-		.card:hover {
-			transform: translateY(-5px);
-			box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-		}
-		.card-header {
-			background: linear-gradient(135deg, #1e3c72, #2a5298);
-			color: white;
-			border-radius: 10px 10px 0 0;
-			font-weight: bold;
-		}
-		.dropdown-item {
-			color: #333;
-			transition: background-color 0.3s ease, color 0.3s ease;
-		}
-		.dropdown-item:hover {
-			background-color: #1e3c72;
-			color: white;
-		}
-		.layout-content {
-			padding: 20px;
-			background-color: white;
-			border-radius: 10px;
-			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-			margin: 20px;
-		}
-	</style>
+				/* Estilos modernos */
+				body {
+					background-color: #f8f9fa;
+					font-family: 'Segoe UI', sans-serif;
+				}
+				.navbar {
+					background: linear-gradient(135deg, #2ECC71, #2ECC71);
+					box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+				}
+				.navbar-brand {
+					font-weight: bold;
+					font-size: 1.5rem;
+					color: white !important;
+				}
+				.navbar-nav .nav-link {
+					color: rgba(255, 255, 255, 0.8) !important;
+					font-weight: 500;
+					transition: color 0.3s ease;
+				}
+				.navbar-nav .nav-link:hover {
+					color: white !important;
+				}
+				.navbar-nav.flex-row {
+				    margin: 0 auto;
+				}
+				.sidebar {
+					background-color: #ffffff;
+					box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+				}
+				.card {
+					border: none;
+					border-radius: 10px;
+					box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+					transition: transform 0.3s ease, box-shadow 0.3s ease;
+				}
+				.card:hover {
+					transform: translateY(-5px);
+					box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+				}
+				.card-header {
+					background: linear-gradient(135deg, #2ECC71, #2ECC71);
+					color: white;
+					border-radius: 10px 10px 0 0;
+					font-weight: bold;
+				}
+				.dropdown-menu {
+				    background-color: #ffffff;
+				    border-radius: 0.5rem;
+				    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+				}
+				.dropdown-item {
+					color: #333;
+					transition: background-color 0.3s ease, color 0.3s ease;
+				}
+				.dropdown-item:hover {
+					background-color: #2ECC71;
+					color: white;
+				}
+				.layout-content {
+					padding: 20px;
+					background-color: white;
+					border-radius: 10px;
+					box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+					margin: 20px;
+				}
+				
+				#form-cadastro {
+				    max-width: 600px;
+				    margin: 100px auto 40px auto;
+				    padding: 30px;
+				    background-color: #ffffff;
+				    border-radius: 10px;
+				    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+				}
+
+				#form-cadastro h2 {
+				    text-align: center;
+				    margin-bottom: 30px;
+				    font-weight: 600;
+				    color: #2ECC71;
+				}
+				
+				#form-cadastro .form-group {
+				    margin-bottom: 20px;
+				}
+			</style>
 </head>
 
 <body>
 	<header th:fragment="page_header">
-		<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-			<div class="container-fluid">
-				<a class="navbar-brand" href="#">iFind</a>
-				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarNav">
-					<ul class="navbar-nav ms-auto">
-						<li class="nav-item">
-							<a class="nav-link" href="/">Home</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" th:href="@{/logout}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-						</li>
-					</ul>
-					<form id="logout-form" th:action="@{/logout}" method="POST" style="display: none;">
-						<input type="hidden" name="_csrf" value="${_csrf.token}">
-					</form>
-				</div>
-			</div>
-		</nav>
+	    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+	        <div class="container-fluid d-flex justify-content-between align-items-center w-100">
+	            <!-- Logo -->
+	            <a class="navbar-brand me-4" href="#">iFind</a>
+
+	            <!-- Menu central -->
+	            <ul class="navbar-nav flex-row gap-4" th:if="${username != null}">
+	                <li class="nav-item">
+	                    <a class="nav-link" href="/">Home</a>
+	                </li>
+	                <li class="nav-item">
+	                    <a class="nav-link" href="/servicos/listar">Serviços</a>
+	                </li>
+	                <li class="nav-item">
+	                    <a class="nav-link" href="/anuncios/listar">Anúncios</a>
+	                </li>
+	            </ul>
+
+	            <!-- Quando usuário estiver logado -->
+	            <ul class="navbar-nav align-items-center" th:if="${username != null}">
+	                <span class="text-white me-2" th:text="'Olá, ' + ${username} + '!'"></span>
+	                <li class="nav-item dropdown">
+	                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+	                       data-bs-toggle="dropdown" aria-expanded="false">
+	                        <i class="oi oi-person"></i>
+	                    </a>
+	                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+	                        <li><a class="dropdown-item" href="/perfil/usuario">Perfil</a></li>
+	                        <li><a class="dropdown-item" href="/perfil/anuncios">Meus Anúncios</a></li>
+	                        <li><a class="dropdown-item" href="/perfil/servicos">Meus Serviços</a></li>
+	                        <li><hr class="dropdown-divider"></li>
+	                        <li>
+	                            <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+	                        </li>
+	                    </ul>
+	                </li>
+	            </ul>
+
+	            <!-- Quando usuário NÃO estiver logado -->
+	            <ul class="navbar-nav ms-auto" th:if="${username == null}">
+	                <li class="nav-item">
+	                    <a class="nav-link" href="/login">Fazer Login</a>
+	                </li>
+	            </ul>
+
+	            <form id="logout-form" th:action="@{/logout}" method="POST" style="display: none;">
+	                <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+	            </form>
+	        </div>
+	    </nav>
 	</header>
 
 	<div class="layout-main">
-		<!--
+		
 		<aside th:fragment="page_anside">
 			<nav class="sidebar sidebar-open p-3">
-				 # Menu dropdown usando <details> e <summary> com Bootstrap 
+				
 				<details class="card mb-3">
 					<summary class="card-header cursor-pointer">
 						<i class="oi oi-home"></i> Home
@@ -117,7 +174,44 @@
 						</ul>
 					</div>
 				</details>
+				
+				<details class="card mb-3">
+					<summary class="card-header cursor-pointer">
+						<i class="oi oi-people"></i> Usuários
+					</summary>
+					<div class="card-body">
+						<ul class="list-unstyled">
+							<li><a class="dropdown-item" href="/usuarios/cadastrar"><i class="oi oi-plus"></i> Cadastrar Usuários</a></li>
+							<li><a class="dropdown-item" href="/usuarios/listar"><i class="oi oi-spreadsheet"></i> Listar Usuários</a></li>
+						</ul>
+					</div>
+				</details>
 
+				<details class="card mb-3">
+					<summary class="card-header cursor-pointer">
+						<i class="oi oi-document"></i> Anúncios
+					</summary>
+					<div class="card-body">
+						<ul class="list-unstyled">
+							<li><a class="dropdown-item" href="/anuncios/cadastrar"><i class="oi oi-plus"></i> Cadastrar Anúncio</a></li>
+							<li><a class="dropdown-item" href="/anuncios/listar"><i class="oi oi-spreadsheet"></i> Listar Anúncios</a></li>
+						</ul>
+					</div>
+				</details>
+
+				<details class="card mb-3">
+					<summary class="card-header cursor-pointer">
+						<i class="oi oi-document"></i> Serviços
+					</summary>
+					<div class="card-body">
+						<ul class="list-unstyled">
+							<li><a class="dropdown-item" href="/servicos/cadastrar"><i class="oi oi-plus"></i> Cadastrar Serviço</a></li>
+							<li><a class="dropdown-item" href="/servicos/listar"><i class="oi oi-spreadsheet"></i> Listar Serviços</a></li>
+						</ul>
+					</div>
+				</details>
+
+				<!--
 				<details class="card mb-3">
 					<summary class="card-header cursor-pointer">
 						<i class="oi oi-people"></i> Alunos
@@ -188,9 +282,10 @@
 						</ul>
 					</div>
 				</details>
+				-->
 			</nav>
 		</aside>
-		-->
+		
 		<section class="layout-content">
 			<div class="container">
 				<!-- Conteúdo da página -->
@@ -206,5 +301,7 @@
 	<script src="/webjars/jquery/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/webjars/jquery/jquery.min.js"></script>
+	<script src="/webjars/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{home :: page_head}"></head>
+
+<body>
+	<header th:replace="~{home :: page_header}"></header>
+
+	<div class="layout-main">
+
+		<aside th:replace="~{home :: page_anside}"></aside>
+
+		<section class="layout-content">
+			<nav class="navbar navbar-expand-md bg-light">
+				<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+
+					<a class="btn btn-primary btn-md" href="/usuarios/cadastrar" role="button">
+						<span class="oi oi-plus" title="Cadastro" aria-hidden="true"></span>
+						<span>Cadastrar Usuário</span>
+					</a>
+				</div>
+			</nav>
+
+			<div class="container">
+				<div class="table-responsive">
+					<table class="table table-striped table-hover table-sm">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Nome de Usuário</th>
+								<th>Nome Completo</th>
+								<th>E-mail</th>
+								<th>CPF</th>
+								<th>Data de Nascimento</th>
+								<th>Profissional</th>
+								<th>Função</th>
+								<th>Ação</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="usuario : ${usuarios}">
+								<td th:text="${usuario.id}">1</td>
+								<td th:text="${usuario.username}">Fulano</td>
+								<td th:text="${usuario.nome}">Fulano de Tal</td>
+								<td th:text="${usuario.email}">fulano@gmail.com</td>
+								<td th:text="${usuario.cpf}">000.000.000-00</td>
+								<td th:text="${usuario.dtNascimento}">01/01/2000</td>
+								<td th:text="${usuario.isProfissional} ? 'Sim' : 'Não'">Sim</td>
+								<td th:text="${usuario.role}">user</td>
+								<td colspan="2">
+									<a class="btn btn-info btn-sm" th:href="@{/alunos/editar/{id} (id=${usuario.id})}" role="button">
+										<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
+									</a>
+
+									<a class="btn btn-danger btn-sm" th:href="@{/alunos/excluir/{id} (id=${usuario.id})} " role="button">
+										<span class="oi oi-brush" title="Excluir" aria-hidden="true"></span>
+									</a>
+
+
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</section>
+
+	</div>
+
+	<footer class="layout-footer">
+		<div class="container">
+
+		</div>
+	</footer>
+
+	<!-- Bootstrap core JavaScript
+================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="/webjars/jquery/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/webjars/jquery/jquery.min.js"></script>
+	<script src="/webjars/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript">
+
+		$(function () {
+			$('[data-toggle="popover"]').popover();
+		});
+
+		$(document).ready(function () {
+			$(".navbar-toggle").click(function () {
+				$(".sidebar").toggleClass("sidebar-open");
+			})
+		});
+
+	</script>
+</body>
+
+</html>

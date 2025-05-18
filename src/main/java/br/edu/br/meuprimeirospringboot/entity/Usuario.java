@@ -8,6 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -15,6 +16,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Usuario implements UserDetails {
@@ -30,7 +32,7 @@ public class Usuario implements UserDetails {
 	private String nome;
 	private String email;
 	
-	@Column(name = "cpf", unique = true, nullable = false)
+	@Column(name = "cpf", unique = true)
 	private String cpf;
 	
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
@@ -38,6 +40,11 @@ public class Usuario implements UserDetails {
 	
 	@Enumerated(EnumType.STRING)
 	private Role role;
+	
+    private boolean isProfissional;
+    
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private List<Servico> servicos;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -121,6 +128,23 @@ public class Usuario implements UserDetails {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+
+	public boolean isProfissional() {
+		return isProfissional;
+	}
+
+	public void setProfissional(boolean isProfissional) {
+		this.isProfissional = isProfissional;
+	}
+
+	public List<Servico> getServicos() {
+		return servicos;
+	}
+
+	public void setServicos(List<Servico> servicos) {
+		this.servicos = servicos;
 	}
 
 
