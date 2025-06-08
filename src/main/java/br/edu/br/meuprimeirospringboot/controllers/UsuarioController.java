@@ -4,10 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import br.edu.br.meuprimeirospringboot.entity.Usuario;
 import br.edu.br.meuprimeirospringboot.serviceImpl.UsuarioServiceImpl;
 
@@ -40,6 +40,30 @@ public class UsuarioController {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 	        return "redirect:/usuarios/cadastrar";
 		}
+	}
+	
+	@GetMapping("/excluir/{id}")
+	String excluir(@PathVariable("id") Long id) {
+		usuario.excluirPorId(id);
+		return "redirect:/usuarios/listar";	
+	}
+	
+	@GetMapping("/editar/{id}")
+	String preEditar(@PathVariable("id") Long id, ModelMap model) {
+		model.addAttribute("usuario", usuario.buscarPorId(id));
+		return "/usuario/cadastro";
+	}
+	
+	@PostMapping("/editar")
+	String editar(Usuario a, RedirectAttributes redirectAttributes) {
+		try {
+			usuario.editar(a);
+			redirectAttributes.addFlashAttribute("sucesso", "Usuário cadastrado com sucesso!");
+			return "redirect:/usuarios/listar";
+		} catch (RuntimeException e) {
+			redirectAttributes.addFlashAttribute("erro", e.getMessage());
+			return "redirect:/usuarios/editar/" + a.getId();
+		}		
 	}
 
 }

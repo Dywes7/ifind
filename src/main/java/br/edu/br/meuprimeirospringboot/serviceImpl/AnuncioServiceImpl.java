@@ -1,10 +1,10 @@
 package br.edu.br.meuprimeirospringboot.serviceImpl;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import br.edu.br.meuprimeirospringboot.entity.Servico;
 
 import br.edu.br.meuprimeirospringboot.entity.Anuncio;
 import br.edu.br.meuprimeirospringboot.repository.AnuncioRepository;
@@ -28,6 +28,15 @@ public class AnuncioServiceImpl implements AnuncioService{
 
 	@Override
 	public void excluirPorId(Long id) {
+		
+		Anuncio a = this.buscarPorId(id);
+		
+		if (a.getServicos() != null) {
+		    for (Servico s : a.getServicos()) {
+		        s.setAnuncio(null);
+		    }
+		}
+		
 		anuncio.deleteById(id);
 		
 	}
@@ -35,7 +44,6 @@ public class AnuncioServiceImpl implements AnuncioService{
 	@Override
 	public Anuncio cadastrar(Anuncio a) {
 		
-		a.setDataCriacao(LocalDateTime.now());
 		return anuncio.save(a);
 	}
 
@@ -46,7 +54,7 @@ public class AnuncioServiceImpl implements AnuncioService{
 		
 		a1.setTitulo(a.getTitulo());
 		a1.setDescricao(a.getDescricao());
-		a1.setCidade(a.getCidade());
+		a1.setLocalizacao(a.getLocalizacao());
 		a1.setCategoria(a.getCategoria());
 		
 		return anuncio.save(a1);

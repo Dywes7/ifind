@@ -5,8 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import br.edu.br.meuprimeirospringboot.serviceImpl.AlunoServiceImpl;
 import br.edu.br.meuprimeirospringboot.serviceImpl.TurmaServiceImpl;
 
 @Controller

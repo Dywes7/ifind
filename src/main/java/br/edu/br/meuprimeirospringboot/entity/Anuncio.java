@@ -22,7 +22,7 @@ public class Anuncio {
 	
 	private String titulo;
 	private String descricao;
-	private String cidade;
+	private String localizacao;
 
 	@Enumerated(EnumType.STRING)
 	private Categoria categoria;
@@ -33,7 +33,7 @@ public class Anuncio {
 	private boolean ativo = true;
 
 
-	@OneToMany(mappedBy = "anuncio", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "anuncio", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private List<Servico> servicos; // opcional, se quiser detalhar
 
 
@@ -64,16 +64,6 @@ public class Anuncio {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
-	}
-
-
-	public String getCidade() {
-		return cidade;
-	}
-
-
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
 	}
 
 
@@ -114,6 +104,16 @@ public class Anuncio {
 
 	public void setServicos(List<Servico> servicos) {
 		this.servicos = servicos;
+	}
+
+
+	public String getLocalizacao() {
+		return localizacao;
+	}
+
+
+	public void setLocalizacao(String localizacao) {
+		this.localizacao = localizacao;
 	}
 
 }

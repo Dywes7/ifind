@@ -48,6 +48,7 @@ public class ServicoServiceImpl implements ServicoService {
 		s1.setPrecoMinimo(s.getPrecoMinimo());
 		s1.setPrecoMaximo(s.getPrecoMaximo());
 		s1.setAtuacao(s.getAtuacao());
+		s1.setCategoria(s.getCategoria());
 		
 		return servico.save(s1);
 	}

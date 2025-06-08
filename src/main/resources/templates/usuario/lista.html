@@ -12,14 +12,13 @@
 		<aside th:replace="~{home :: page_anside}"></aside>
 
 		<section class="layout-content">
-			<nav class="navbar navbar-expand-md bg-light">
-				<div class="collapse navbar-collapse" id="navbarsExampleDefault">
-
-					<a class="btn btn-primary btn-md" href="/usuarios/cadastrar" role="button">
+			<nav class="navbar navbar-expand-md bg-success px-3 d-flex justify-content-between align-items-center">
+					<h4 class="text-white m-0">Lista de Usuários</h4>
+				
+					<a class="btn btn-success btn-md d-flex align-items-center gap-2" href="/usuarios/cadastrar" role="button">
 						<span class="oi oi-plus" title="Cadastro" aria-hidden="true"></span>
 						<span>Cadastrar Usuário</span>
 					</a>
-				</div>
 			</nav>
 
 			<div class="container">
@@ -49,11 +48,11 @@
 								<td th:text="${usuario.isProfissional} ? 'Sim' : 'Não'">Sim</td>
 								<td th:text="${usuario.role}">user</td>
 								<td colspan="2">
-									<a class="btn btn-info btn-sm" th:href="@{/alunos/editar/{id} (id=${usuario.id})}" role="button">
+									<a class="btn btn-info btn-sm" th:href="@{/usuarios/editar/{id} (id=${usuario.id})}" role="button">
 										<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
 									</a>
 
-									<a class="btn btn-danger btn-sm" th:href="@{/alunos/excluir/{id} (id=${usuario.id})} " role="button">
+									<a class="btn btn-danger btn-sm" th:href="@{/usuarios/excluir/{id} (id=${usuario.id})} " role="button">
 										<span class="oi oi-brush" title="Excluir" aria-hidden="true"></span>
 									</a>
 

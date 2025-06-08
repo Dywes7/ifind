@@ -148,7 +148,7 @@
 			        </div>
 			        <input type="hidden" th:field="*{id}" />
 			        <div class="text-end mt-3">
-			            <button type="submit" class="btn btn-primary">Salvar</button>
+			            <button type="submit" class="btn btn-success btn-md">Salvar</button>
 			        </div>
 			    </form>
 			</div>
@@ -163,26 +163,25 @@
 	
 
     <!-- Scripts -->
-    <script src="/webjars/jquery/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-	<script src="/webjars/jquery/jquery.min.js"></script>
-	<script src="/webjars/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="/webjars/jquery/jquery.min.js"></script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	    <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+		<script src="/webjars/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <script>
-        $(function () {
-            $('[data-toggle="popover"]').popover();
-        });
-        $(".navbar-toggler").click(function () {
-            $(".sidebar").toggleClass("sidebar-open");
-        });
-		
-		$(document).ready(function() {
-				      $('#cpf').mask('000.000.000-00', {reverse: true});
-		});
-		
-    </script>
+	    <script>
+	        $(function () {
+	            $('[data-toggle="popover"]').popover();
+	        });
+	        $(".navbar-toggler").click(function () {
+	            $(".sidebar").toggleClass("sidebar-open");
+	        });
+			
+			$(document).ready(function() {
+					      $('#cpf').mask('000.000.000-00', {reverse: true});
+			});
+			
+	    </script>
 	
 	<script>
 	    document.querySelector("form").addEventListener("submit", function(event) {

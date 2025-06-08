@@ -9,10 +9,10 @@
 
         <section class="layout-content">
             <div class="page-header">
-                <nav class="navbar navbar-expand-md navbar-light bg-light">
-                    <a class="btn btn-primary btn-md" href="/anuncios/listar" role="button">
+                <nav class="navbar navbar-expand-md bg-success px-3 d-flex justify-content-between align-items-center">
+                    <a class="btn btn-success btn-md d-flex align-items-center gap-2" href="/anuncios/listar" role="button">
                         <span class="oi oi-spreadsheet" title="Cadastro" aria-hidden="true"></span>
-                        <span>Listar Anuncios</span>
+                        <span>Listar Anúncios</span>
                     </a>
                 </nav>
             </div>
@@ -37,24 +37,31 @@
                             <textarea class="form-control" id="descricao" placeholder="Descrição do anuncio" th:field="*{descricao}" required></textarea>      
                         </div>
 						
+                        <div class="form-group col-md-6">
+                            <label for="localizacao">Localização</label>
+                            <textarea class="form-control" id="localizacao" placeholder="Local de atuação dos serviços" th:field="*{localizacao}" required></textarea>      
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="categoria">Área de atuação</label>
+                            <select class="form-control" id="categoria" th:field="*{categoria}">
+								<option value="TI_INFORMATICA">TI/INFORMÁTICA</option>
+								<option value="MARCENARIA">MARCENARIA</option>
+								<option value="GASTRONOMIA">GASTRONOMIA</option>
+                                <option value="DESIGN">DESIGN</option>
+								<option value="FINANCAS">FINANÇAS</option>
+								<option value="SAUDE">SAÚDE</option>
+                                <option value="EDUCACAO">EDUCAÇÃO</option>
+								<option value="CONSTRUCAO_CIVIL">CONSTRUÇÃO CIVIL</option>	
+							</select>      
+                        </div>
+						
 						<div class="form-group col-md-6">
-                            <label for="precomin">Preço mínimo</label>
-                            <input type="number" class="form-control" id="precomin" placeholder="Preço mínimo do serviço" th:field="*{precoMinimo}" required step="0.01" min="0" />
-                        </div>
-
-                        <div class="form-group col-md-6">
-                            <label for="precomax">Preço máximo</label>
-                            <input type="number" class="form-control" id="precomax" placeholder="Preço máximo do serviço" th:field="*{precoMaximo}" required step="0.01" min="0" />
-                        </div>
-
-                        <div class="form-group col-md-6">
-                            <label for="atuacao">Atuação do serviço</label>
-							<select class="form-control" id="cargaHorariaHoras" th:field="*{atuacao}">
-								<option value="Presencial">Presencial</option>
-								<option value="Remoto">Remoto</option>
-								<option value="Híbrido">Híbrido</option>
+							<label for="servicos">Serviços</label>
+							<select class="form-control" id="servicos" th:field="*{servicos}" multiple size="5" required>
+								<option th:each="s : ${servicosuser}" th:value="${s.id}" th:text="${s.titulo}"></option>
 							</select>
-                        </div>
+						</div>
 
                     </div>
 					<input type="hidden" th:field="*{id}" />

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.edu.br.meuprimeirospringboot.entity.Aluno;
 import br.edu.br.meuprimeirospringboot.entity.Servico;
 import br.edu.br.meuprimeirospringboot.entity.Usuario;
 import br.edu.br.meuprimeirospringboot.serviceImpl.ServicoServiceImpl;

@@ -64,8 +64,6 @@ public class AlunoController {
 		} catch (RuntimeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
 			return "redirect:/alunos/editar/" + a.getId();
-		}
-		
-			
+		}		
 	}
 }

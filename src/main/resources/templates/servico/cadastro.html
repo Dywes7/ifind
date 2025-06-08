@@ -9,11 +9,12 @@
 
         <section class="layout-content">
             <div class="page-header">
-                <nav class="navbar navbar-expand-md navbar-light bg-light">
-                    <a class="btn btn-primary btn-md" href="/servicos/listar" role="button">
+                <nav class="navbar navbar-expand-md bg-success px-3 d-flex justify-content-between align-items-center">
+                    <a class="btn btn-success btn-md d-flex align-items-center gap-2" href="/servicos/listar" role="button">
                         <span class="oi oi-spreadsheet" title="Cadastro" aria-hidden="true"></span>
                         <span>Listar Serviços</span>
                     </a>
+                    
                 </nav>
             </div>
 
@@ -49,11 +50,25 @@
 
                         <div class="form-group col-md-6">
                             <label for="atuacao">Atuação do serviço</label>
-							<select class="form-control" id="cargaHorariaHoras" th:field="*{atuacao}">
+							<select class="form-control" id="atuacao" th:field="*{atuacao}">
 								<option value="Presencial">Presencial</option>
 								<option value="Remoto">Remoto</option>
 								<option value="Híbrido">Híbrido</option>
 							</select>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="categoria">Área de atuação</label>
+                            <select class="form-control" id="categoria" th:field="*{categoria}">
+								<option value="TI_INFORMATICA">TI/INFORMÁTICA</option>
+								<option value="MARCENARIA">MARCENARIA</option>
+								<option value="GASTRONOMIA">GASTRONOMIA</option>
+                                <option value="DESIGN">DESIGN</option>
+								<option value="FINANCAS">FINANÇAS</option>
+								<option value="SAUDE">SAÚDE</option>
+                                <option value="EDUCACAO">EDUCAÇÃO</option>
+								<option value="CONSTRUCAO_CIVIL">CONSTRUÇÃO CIVIL</option>	
+							</select>      
                         </div>
 
                     </div>
