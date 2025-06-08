@@ -15,9 +15,12 @@ import br.edu.br.meuprimeirospringboot.entity.Role;
 import br.edu.br.meuprimeirospringboot.entity.Usuario;
 import br.edu.br.meuprimeirospringboot.repository.UsuarioRepository;
 import br.edu.br.meuprimeirospringboot.service.UsuarioService;
+import br.edu.br.meuprimeirospringboot.service.UsuarioCadastroService;
+import br.edu.br.meuprimeirospringboot.service.UsuarioConsultaService;
+import br.edu.br.meuprimeirospringboot.service.UsuarioExclusaoService;
 
 @Service
-public class UsuarioServiceImpl implements UsuarioService, UserDetailsService{
+public class UsuarioServiceImpl implements UsuarioService, UserDetailsService, UsuarioCadastroService, UsuarioConsultaService, UsuarioExclusaoService{
 	
 	@Autowired
 	private final UsuarioRepository usuario;
