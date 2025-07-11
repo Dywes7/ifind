@@ -1,17 +1,23 @@
 package br.edu.br.meuprimeirospringboot.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.ui.ModelMap;
+import br.edu.br.meuprimeirospringboot.serviceImpl.AnuncioServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 public class HomeController {
 	
+	@Autowired
+	private AnuncioServiceImpl anuncio;
+	
 	@GetMapping("/")
-	String index() {
+	String index(ModelMap model) {
+		model.addAttribute("anuncios", anuncio.buscarTodos());
 		return "home";
 	}
 	

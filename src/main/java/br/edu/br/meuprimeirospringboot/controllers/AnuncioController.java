@@ -92,6 +92,14 @@ public class AnuncioController {
 		return "/anuncio/cadastro";
 	}
 	
+	@GetMapping("/anuncio/{id}")
+	String verAnuncio(@PathVariable("id") Long id, ModelMap model) {
+		
+		Anuncio anuncioEncontrado = anuncio.buscarPorId(id);
+	    model.addAttribute("anuncio", anuncioEncontrado);
+	    return "/anuncio/view"; // <- Nome da nova página que criamos
+	}
+	
 	@PostMapping("/editar")
 	String editar(Anuncio a, RedirectAttributes redirectAttributes) {
 		try {

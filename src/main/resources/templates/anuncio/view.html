@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{home :: page_head}"></head>
+
+<body>
+    <header th:replace="~{home :: page_header}"></header>
+
+    <div class="layout-main">
+        <aside th:replace="~{home :: page_anside}"></aside>
+
+        <section class="layout-content">
+            <div class="container mt-4">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body">
+                        <h2 class="card-title text-success" th:text="${anuncio.titulo}">Título do Anúncio</h2>
+                        <p class="card-text" th:text="${anuncio.descricao}">Descrição do anúncio...</p>
+
+                        <div class="mb-2">
+                            <strong>Localização: </strong>
+                            <span th:text="${anuncio.localizacao}">Localização</span>
+                        </div>
+
+                        <div class="mb-2">
+                            <strong>Categoria: </strong>
+                            <span class="badge bg-success" th:text="${anuncio.categoria}">Categoria</span>
+                        </div>
+
+                        <div class="mb-3">
+                            <strong>Data de Criação:</strong>
+                            <span th:text="${#temporals.format(anuncio.dataCriacao, 'dd/MM/yyyy HH:mm')}">Data</span>
+                        </div>
+
+                        <div>
+                            <h5 class="mt-4">Serviços Relacionados:</h5>
+                            <div th:if="${anuncio.servicos != null && !anuncio.servicos.empty}">
+                                <ul class="list-group">
+                                    <li class="list-group-item" th:each="s : ${anuncio.servicos}">
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <strong th:text="${s.titulo}">Serviço</strong>
+                                                <p class="mb-1" th:text="${s.descricao}">Descrição</p>
+                                                <small class="text-muted" th:text="'Faixa de preço: R$' + ${s.precoMinimo} + ' - R$' + ${s.precoMaximo}">Preços</small>
+                                            </div>
+                                            <span class="badge bg-secondary align-self-center" th:text="${s.categoria}">Categoria</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div th:if="${anuncio.servicos == null || anuncio.servicos.empty}">
+                                <p class="text-muted">Nenhum serviço associado a este anúncio.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-footer d-flex justify-content-end gap-2 bg-white border-top-0">
+                        <a class="btn btn-outline-info" th:href="@{/anuncios/editar/{id}(id=${anuncio.id})}">
+                            <span class="oi oi-brush" title="Editar"></span> Editar
+                        </a>
+                        <a class="btn btn-outline-danger" th:href="@{/anuncios/excluir/{id}(id=${anuncio.id})}">
+                            <span class="oi oi-trash" title="Excluir"></span> Excluir
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="layout-footer"><div class="container"></div></footer>
+
+    <!-- Scripts -->
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

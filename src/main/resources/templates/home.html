@@ -287,12 +287,31 @@
 		</aside>
 		
 		<section class="layout-content">
-			<div class="container">
-				<!-- Conteúdo da página -->
-				<h1>Bem-vindo ao iFind</h1>
-				<p>iFind é uma plataforma para anúncios e contratação de serviços autônomos.</p>
-			</div>
+		    <nav class="navbar navbar-expand-md bg-success px-3 d-flex justify-content-between align-items-center rounded-top">
+		        <h4 class="text-white m-0">Anúncios</h4>
+		    </nav>
+
+		    <div class="container my-4">
+		        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" th:if="${anuncios != null}">
+		            <div class="col" th:each="anuncio : ${anuncios}">
+						<a th:href="@{/anuncios/anuncio/{id}(id=${anuncio.id})}" class="text-decoration-none text-dark">
+						    <div class="card h-100 shadow-sm border-0">
+						        <div class="card-body">
+						            <h5 class="card-title text-success" th:text="${anuncio.titulo}">Título do Anúncio</h5>
+						            <p class="card-text" th:text="${anuncio.descricao}">Descrição do anúncio...</p>
+						            <p class="text-muted mb-1">
+						                <i class="oi oi-map"></i>
+						                <span th:text="${anuncio.localizacao}">Localização</span>
+						            </p>
+						            <span class="badge bg-success" th:text="${anuncio.categoria}">Categoria</span>
+						        </div>
+						    </div>
+						</a>
+		            </div>
+		        </div>
+		    </div>
 		</section>
+
 	</div>
 
 	<!-- Bootstrap core JavaScript
