@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.edu.br.meuprimeirospringboot.entity.Servico;
 import br.edu.br.meuprimeirospringboot.entity.Usuario;
+import br.edu.br.meuprimeirospringboot.entity.Anuncio;
+import br.edu.br.meuprimeirospringboot.repository.AnuncioRepository;
 import br.edu.br.meuprimeirospringboot.repository.ServicoRepository;
 
 @Controller
@@ -20,6 +22,9 @@ public class PerfilController {
 	
 	@Autowired
 	private ServicoRepository servico;
+	
+	@Autowired
+	private AnuncioRepository anuncio;
 
 	
 	@GetMapping("/usuario")
@@ -40,7 +45,12 @@ public class PerfilController {
 	
 	@GetMapping("/anuncios")
 	String PerfilAnuncios(ModelMap model) {
-		return null;
+		Usuario usuarioLogado = getUsuarioLogado();
+		
+		List<Anuncio> anunciosDoUsuario = anuncio.findAnunciosByUsuario(usuarioLogado);
+		
+		model.addAttribute("anuncios", anunciosDoUsuario);
+		return "/perfil/anuncios";
 	}
 	
 	// Método utilitário para obter o usuário logado

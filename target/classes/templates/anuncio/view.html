@@ -15,7 +15,17 @@
                     <div class="card-body">
                         <h2 class="card-title text-success" th:text="${anuncio.titulo}">Título do Anúncio</h2>
                         <p class="card-text" th:text="${anuncio.descricao}">Descrição do anúncio...</p>
-
+						
+						<div class="mb-2">
+							<strong>Anunciante: </strong>
+							<span th:text="${anuncio.servicos[0].usuario.username}">Nome anunciante</span>
+						</div>
+						
+						<div class="mb-2">
+							<strong>Contato: </strong>
+							<span th:text="${anuncio.servicos[0].usuario.telefone}">(00) 00000-0000</span>
+						</div>
+						
                         <div class="mb-2">
                             <strong>Localização: </strong>
                             <span th:text="${anuncio.localizacao}">Localização</span>
@@ -51,15 +61,6 @@
                                 <p class="text-muted">Nenhum serviço associado a este anúncio.</p>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="card-footer d-flex justify-content-end gap-2 bg-white border-top-0">
-                        <a class="btn btn-outline-info" th:href="@{/anuncios/editar/{id}(id=${anuncio.id})}">
-                            <span class="oi oi-brush" title="Editar"></span> Editar
-                        </a>
-                        <a class="btn btn-outline-danger" th:href="@{/anuncios/excluir/{id}(id=${anuncio.id})}">
-                            <span class="oi oi-trash" title="Excluir"></span> Excluir
-                        </a>
                     </div>
                 </div>
             </div>

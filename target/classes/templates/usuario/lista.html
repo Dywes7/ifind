@@ -30,6 +30,7 @@
 								<th>Nome de Usuário</th>
 								<th>Nome Completo</th>
 								<th>E-mail</th>
+								<th>Telefone</th>
 								<th>CPF</th>
 								<th>Data de Nascimento</th>
 								<th>Profissional</th>
@@ -43,6 +44,7 @@
 								<td th:text="${usuario.username}">Fulano</td>
 								<td th:text="${usuario.nome}">Fulano de Tal</td>
 								<td th:text="${usuario.email}">fulano@gmail.com</td>
+								<td th:text="${usuario.telefone}">(00) 00000-0000</td>
 								<td th:text="${usuario.cpf}">000.000.000-00</td>
 								<td th:text="${usuario.dtNascimento}">01/01/2000</td>
 								<td th:text="${usuario.isProfissional} ? 'Sim' : 'Não'">Sim</td>

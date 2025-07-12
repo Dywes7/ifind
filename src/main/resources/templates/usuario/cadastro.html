@@ -115,7 +115,7 @@
 			        <span th:text="${sucesso}"></span>
 			    </div>
 
-			    <form th:action="@{/usuarios/salvar}" method="POST" th:object="${usuario}">
+			    <form id="formCadastro" th:action="@{/usuarios/salvar}" method="POST" th:object="${usuario}">
 			        <div class="row">	       
 						<div class="form-group col-md-12">
 							<label for="nome">Nome de Usuário</label>
@@ -137,6 +137,10 @@
 			                <label for="email">E-mail</label>
 			                <input type="email" class="form-control" id="email" placeholder="E-mail" th:field="*{email}" required/>
 			            </div>
+						<div class="form-group col-md-12">
+							<label for="telefone">Telefone</label>
+							<input type="text" class="form-control" id="telefone" placeholder="Telefone" th:field="*{telefone}" required/>
+						</div>
 			            <div class="form-group col-md-6">
 			                <label for="cpf">CPF</label>
 			                <input type="text" class="form-control" id="cpf" placeholder="CPF" th:field="*{cpf}" required />
@@ -182,17 +186,39 @@
 			});
 			
 	    </script>
+		
+		<script>
+			$(function () {
+				$('[data-toggle="popover"]').popover();
+			});
+			$(".navbar-toggler").click(function () {
+				$(".sidebar").toggleClass("sidebar-open");
+			});
+				
+			$(document).ready(function() {
+					      $('#telefone').mask('(00) 00000-0000');
+			});			
+		</script>
 	
-	<script>
-	    document.querySelector("form").addEventListener("submit", function(event) {
-	        const senha = document.getElementById("password").value;
-	        const confirmar = document.getElementById("confirmarSenha").value;
+	
+		
+		<script>
+		    document.addEventListener("DOMContentLoaded", function () {
+		        const form = document.getElementById("formCadastro");
+		        const password = document.getElementById("password");
+		        const confirmarSenha = document.getElementById("confirmarSenha");
 
-	        if (senha !== confirmar) {
-	            event.preventDefault(); // impede envio
-	            alert("As senhas não coincidem!");
-	        }
-	    });
-	</script>
+		        if (form) {
+		            form.addEventListener("submit", function (e) {
+		                if (password.value !== confirmarSenha.value) {
+		                    e.preventDefault(); // impede o envio do formulário
+		                    alert("As senhas não coincidem.");
+		                    confirmarSenha.focus();
+		                }
+		            });
+		        }
+		    });
+		</script>
+
 </body>
 </html>

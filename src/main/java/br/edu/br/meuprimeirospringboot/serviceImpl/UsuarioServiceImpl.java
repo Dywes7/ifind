@@ -130,7 +130,24 @@ public class UsuarioServiceImpl implements UsuarioService, UserDetailsService, U
 
 	@Override
 	public Usuario editar(Usuario u) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Usuario u1 = this.buscarPorId(u.getId());
+		
+		u1.setNome(u.getNome());
+		u1.setEmail(u.getEmail());
+		u1.setTelefone(u.getTelefone());
+		u1.setCpf(u.getCpf());
+		u1.setDtNascimento(u.getDtNascimento());
+		
+		if (u.getPassword() != null) {
+			
+			PasswordEncoder encoder = new BCryptPasswordEncoder();
+			String senhaCriptografada = encoder.encode(u.getPassword());
+			
+	        u1.setPassword(senhaCriptografada);
+			
+		}
+		
+		return usuario.save(u1);
 	}
 }

@@ -35,7 +35,11 @@ public class Usuario implements UserDetails {
 	@Column(name = "cpf", unique = true)
 	private String cpf;
 	
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@Column(unique = true)
+	private String telefone;
+	
+	//@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dtNascimento;
 	
 	@Enumerated(EnumType.STRING)
@@ -145,6 +149,14 @@ public class Usuario implements UserDetails {
 
 	public void setServicos(List<Servico> servicos) {
 		this.servicos = servicos;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 
 

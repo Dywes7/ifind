@@ -51,14 +51,14 @@ public class UsuarioController {
 	@GetMapping("/editar/{id}")
 	String preEditar(@PathVariable("id") Long id, ModelMap model) {
 		model.addAttribute("usuario", usuario.buscarPorId(id));
-		return "/usuario/cadastro";
+		return "/usuario/editar";
 	}
 	
 	@PostMapping("/editar")
 	String editar(Usuario a, RedirectAttributes redirectAttributes) {
 		try {
 			usuario.editar(a);
-			redirectAttributes.addFlashAttribute("sucesso", "Usuário cadastrado com sucesso!");
+			redirectAttributes.addFlashAttribute("sucesso", "Usuário editado com sucesso!");
 			return "redirect:/usuarios/listar";
 		} catch (RuntimeException e) {
 			redirectAttributes.addFlashAttribute("erro", e.getMessage());
