@@ -19,6 +19,8 @@ public interface AnuncioRepository extends JpaRepository<Anuncio,Long> {
 	
 	@Query("SELECT DISTINCT s.anuncio FROM Servico s WHERE s.usuario = :usuario AND s.anuncio IS NOT NULL")
 	List<Anuncio> findAnunciosByUsuario(@Param("usuario") Usuario usuario);
+	
+	List<Anuncio> findByTituloContainingIgnoreCaseOrDescricaoContainingIgnoreCase(String titulo, String descricao);
 
 
 }

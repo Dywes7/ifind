@@ -61,6 +61,11 @@ public class AnuncioServiceImpl implements AnuncioService{
 		
 	}
 	
+	@Override
+	public List<Anuncio> buscarPorTituloOuDescricao(String termo) {
+        return anuncio.findByTituloContainingIgnoreCaseOrDescricaoContainingIgnoreCase(termo, termo);
+    }
+	
 	
 
 }

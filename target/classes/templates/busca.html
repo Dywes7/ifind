@@ -297,29 +297,34 @@
 		
 		<section class="layout-content">
 		    <nav class="navbar navbar-expand-md bg-success px-3 d-flex justify-content-between align-items-center rounded-top">
-		        <h4 class="text-white m-0">Anúncios</h4>
+		        <h4 class="text-white m-0" th:if="${termoBusca}" th:text="'Resultados para: ' + ${termoBusca}">Resultados</h4>
 		    </nav>
 
 		    <div class="container my-4">
-		        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" th:if="${anuncios != null}">
+		        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" th:if="${anuncios != null and !anuncios.isEmpty()}">
 		            <div class="col" th:each="anuncio : ${anuncios}">
-						<a th:href="@{/anuncios/anuncio/{id}(id=${anuncio.id})}" class="text-decoration-none text-dark">
-						    <div class="card h-100 shadow-sm border-0">
-						        <div class="card-body">
-						            <h5 class="card-title text-success" th:text="${anuncio.titulo}">Título do Anúncio</h5>
-						            <p class="card-text" th:text="${anuncio.descricao}">Descrição do anúncio...</p>
-						            <p class="text-muted mb-1">
-						                <i class="oi oi-map"></i>
-						                <span th:text="${anuncio.localizacao}">Localização</span>
-						            </p>
-						            <span class="badge bg-success" th:text="${anuncio.categoria}">Categoria</span>
-						        </div>
-						    </div>
-						</a>
+		                <a th:href="@{/anuncios/anuncio/{id}(id=${anuncio.id})}" class="text-decoration-none text-dark">
+		                    <div class="card h-100 shadow-sm border-0">
+		                        <div class="card-body">
+		                            <h5 class="card-title text-success" th:text="${anuncio.titulo}">Título do Anúncio</h5>
+		                            <p class="card-text" th:text="${anuncio.descricao}">Descrição do anúncio...</p>
+		                            <p class="text-muted mb-1">
+		                                <i class="oi oi-map"></i>
+		                                <span th:text="${anuncio.localizacao}">Localização</span>
+		                            </p>
+		                            <span class="badge bg-success" th:text="${anuncio.categoria}">Categoria</span>
+		                        </div>
+		                    </div>
+		                </a>
 		            </div>
+		        </div>
+
+		        <div th:if="${anuncios != null and anuncios.isEmpty()}" class="text-center mt-4">
+		            <p class="text-muted">Nenhum anúncio encontrado para sua busca.</p>
 		        </div>
 		    </div>
 		</section>
+
 
 	</div>
 

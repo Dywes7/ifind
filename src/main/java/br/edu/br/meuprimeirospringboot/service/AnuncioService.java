@@ -16,4 +16,5 @@ public interface AnuncioService {
 	
 	Anuncio editar(Anuncio a);
 
+	List<Anuncio> buscarPorTituloOuDescricao(String termo);
 }
