@@ -46,7 +46,9 @@
 								<td th:text="${usuario.email}">fulano@gmail.com</td>
 								<td th:text="${usuario.telefone}">(00) 00000-0000</td>
 								<td th:text="${usuario.cpf}">000.000.000-00</td>
-								<td th:text="${usuario.dtNascimento}">01/01/2000</td>
+								<td th:text="${#strings.substring(usuario.dtNascimento, 8, 10) + '-' + 
+								               #strings.substring(usuario.dtNascimento, 5, 7) + '-' + 
+								               #strings.substring(usuario.dtNascimento, 0, 4)}">01-01-2000</td>
 								<td th:text="${usuario.isProfissional} ? 'Sim' : 'Não'">Sim</td>
 								<td th:text="${usuario.role}">user</td>
 								<td colspan="2">

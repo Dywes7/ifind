@@ -34,7 +34,7 @@ public class AnuncioController {
 	@GetMapping("/listar")
 	String ListarAnuncios(ModelMap model){
 		model.addAttribute("anuncios", anuncio.buscarTodos());
-		return "/anuncio/lista";
+		return "anuncio/lista";
 	}	
 	
 	@GetMapping("/cadastrar")
@@ -48,7 +48,7 @@ public class AnuncioController {
 		model.addAttribute("servicosuser", servicosDoUsuario);
 		model.addAttribute("anuncio", new Anuncio());
 		
-		return "/anuncio/cadastro";
+		return "anuncio/cadastro";
 	}
 	
 	@PostMapping("/salvar")
@@ -89,7 +89,7 @@ public class AnuncioController {
 		model.addAttribute("servicosuser", servicosDoUsuario);
 		
 		model.addAttribute("anuncio", anuncio.buscarPorId(id));
-		return "/anuncio/cadastro";
+		return "anuncio/cadastro";
 	}
 	
 	@GetMapping("/anuncio/{id}")
@@ -97,7 +97,7 @@ public class AnuncioController {
 		
 		Anuncio anuncioEncontrado = anuncio.buscarPorId(id);
 	    model.addAttribute("anuncio", anuncioEncontrado);
-	    return "/anuncio/view"; // <- Nome da nova página que criamos
+	    return "anuncio/view"; // <- Nome da nova página que criamos
 	}
 	
 	@PostMapping("/editar")

@@ -40,7 +40,7 @@ public class PerfilController {
 		List<Servico> servicosDoUsuario = servico.findByUsuario(usuarioLogado);
 		
 		model.addAttribute("servicos", servicosDoUsuario);
-		return "/perfil/servicos";
+		return "perfil/servicos";
 	}
 	
 	@GetMapping("/anuncios")
@@ -50,7 +50,7 @@ public class PerfilController {
 		List<Anuncio> anunciosDoUsuario = anuncio.findAnunciosByUsuario(usuarioLogado);
 		
 		model.addAttribute("anuncios", anunciosDoUsuario);
-		return "/perfil/anuncios";
+		return "perfil/anuncios";
 	}
 	
 	// Método utilitário para obter o usuário logado

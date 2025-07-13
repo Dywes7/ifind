@@ -8,5 +8,6 @@ public enum Categoria {
     FINANCAS,
     SAUDE,
     EDUCACAO,
-    CONSTRUCAO_CIVIL;
+    CONSTRUCAO_CIVIL,
+    OUTROS;
 }

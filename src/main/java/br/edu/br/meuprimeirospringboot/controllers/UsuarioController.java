@@ -21,13 +21,13 @@ public class UsuarioController {
 	@GetMapping("/listar")
 	String ListarUsuarios(ModelMap model) {
 		model.addAttribute("usuarios", usuario.buscarTodos());
-		return "/usuario/lista";
+		return "usuario/lista";
 	}
 	
 	@GetMapping("/cadastrar")
 	String CadastrarUsuarios(ModelMap model) {
 		model.addAttribute("usuario", new Usuario());
-		return "/usuario/cadastro";
+		return "usuario/cadastro";
 	}
 	
 	@PostMapping("/salvar")
@@ -51,7 +51,7 @@ public class UsuarioController {
 	@GetMapping("/editar/{id}")
 	String preEditar(@PathVariable("id") Long id, ModelMap model) {
 		model.addAttribute("usuario", usuario.buscarPorId(id));
-		return "/usuario/editar";
+		return "usuario/editar";
 	}
 	
 	@PostMapping("/editar")
